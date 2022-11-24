@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+:root {
+    --white: #EBE3CC;
+    --green: #B2AB73;
+    --blue: #062D3E;
+    --brown: #774C32;
+    --dark_brown: #4e3220;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 8rem;
+}
+
+.main-content h1 {
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 96px;
+    text-align: center;
+    color: #6E5742;
+}
+
+.main-content p {
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+    margin: 2rem;
+}
+
+.main-box {
+    position: absolute;
+    width: 35rem;
+    height: 43rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-signin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-signin input {
+    background-color: transparent;
+    width: 25rem;
+    height: 3rem;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: #202020;
+    border: 0;
+    outline: none;
+    margin-top: 1rem;
+}
+
+.form-signin hr {
+    width: 25rem;
+    background: #6F5742;
+    border: 0.9px solid #6E5742;
+    margin-bottom: 2rem;
+}
+
+.form-signin button {
+    width: 25.5rem;
+    height: 3.2rem;
+    background: #6F5742;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: #ffffff;
+}
+
+.form-signin button:hover {
+    background: linear-gradient(269deg, #4A3B2D 0%, #6F5742 100.01%);
+    transition: background 0.5s;
+    cursor: pointer;
+}
+
+.black-cat {
+    position: absolute;
+    right: 0;
+    top: 51rem;
+}
+
+.main-box span {
+    margin-top: 20px;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+    color: #6E5742;
+}
+
+.main-box a{
+    margin-top: 2rem;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+    color: #6E5742;
+}
+
+.main-box a:hover{
+    color: #B2AB73;
+    transition: background 0.5s;
+    cursor: pointer;
+}
+
+.with-line {
+    display: block;
+}
+
+.with-line:before,
+.with-line:after {
+    content: "";
+    display: inline-block;
+    border-top: 1px solid #6E5742;
+    width: 10rem;
+    vertical-align: middle;
+    margin: 0 0.5em;
+}

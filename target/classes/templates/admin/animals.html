@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+  <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/animals.css}"/>
+  <title>Casdastro</title>
+</head>
+
+<body>
+  <nav class="sidebar close">
+    <header>
+      <div class="image-logo">
+        <img th:src="@{/img/hopaper1.png}" alt="" />
+      </div>
+
+      <i class="bx bx-chevron-right toggle"></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <li class="search-box">
+          <i class="bx bx-search icon"></i>
+          <input type="text" placeholder="Search..." />
+        </li>
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a  th:href="@{/admin/dashboard}">
+              <i class="bx bx-home-alt icon"></i>
+              <span class="text nav-text">Home</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class="bx bx-bell icon"></i>
+              <span class="text nav-text">Solicitações</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a th:href="@{/admin/animals}">
+              <iconify-icon class='icon' icon="ph:paw-print" width="26"></iconify-icon>
+              <span class="text nav-text">Animais</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a >
+              <iconify-icon class='icon' icon="la:hand-holding-heart" width="26"></iconify-icon>
+              <span class="text nav-text">Adoções</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a th:href="@{/logout}">
+            <i class="bx bx-log-out icon"></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+
+        <li class="mode">
+          <div class="sun-moon">
+            <i class="bx bx-moon icon moon"></i>
+            <i class="bx bx-sun icon sun"></i>
+          </div>
+          <span class="mode-text text">Modo escuroㅤ</span>
+
+          <div class="toggle-switch">
+            <span class="switch"></span>
+          </div>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+  <section class="home">
+    <div class="table">
+      <div class="text">Animais</div>
+      <div class="table-titles">
+        <div class="titles-text">
+          <p>Id</p>
+          <p>Nome</p>
+          <p>Nascimento</p>
+          <p>Raça</p>
+          <p>Tipo</p>
+          <p>Estado</p>
+        </div>
+      </div>
+      <div class="table-content" th:each="animal : ${tanimals}">
+        <div class="table-data" >
+            <p>[[*{animal.id}]]</p>
+            <p>[[*{animal.nome}]]</p>
+            <p>[[*{animal.data_nasc}]]</p>
+            <p>[[*{animal.raca}]]</p>
+            <p>[[*{animal.tipo}]]</p>
+            <p>[[*{animal.estado}]]</p>
+        </div>
+        <button class="data-edit"><a href="#"><iconify-icon icon="bytesize:edit" style="color: #ededed;" width="30"></iconify-icon></a></button>
+        <button class="data-del"><a th:href="@{/deleteAnimal/{id}(id=${animal.id})}"><iconify-icon icon="tabler:trash-x" style="color: #ededed; font-size: 30px;"></iconify-icon></a></button>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
+
+<script>
+  const body = document.querySelector('body'),
+    sidebar = body.querySelector('nav'),
+    toggle = body.querySelector('.toggle'),
+    searchBtn = body.querySelector('.search-box'),
+    modeSwitch = body.querySelector('.toggle-switch'),
+    modeText = body.querySelector('.mode-text')
+
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('close')
+  })
+
+  searchBtn.addEventListener('click', () => {
+    sidebar.classList.remove('close')
+  })
+
+  modeSwitch.addEventListener('click', () => {
+    body.classList.toggle('dark')
+
+    if (body.classList.contains('dark')) {
+      modeText.innerText = 'Modo claro'
+    } else {
+      modeText.innerText = 'Modo escuroㅤ'
+    }
+  })
+</script>
