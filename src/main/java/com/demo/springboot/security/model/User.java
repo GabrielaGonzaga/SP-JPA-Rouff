@@ -84,6 +84,9 @@ public class User implements UserDetails  {
     @Column(name = "enabled")
     private Boolean enabled = true;
 
+    // @OneToOne(mappedBy = "user_id")
+    // private Adoptions adoptions;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());

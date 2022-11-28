@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Animal {
@@ -13,14 +15,42 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "nome")
     private String nome;
+
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "raca")
     private String raca;
+
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "sexo")
     private String sexo;
+
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "estado")
     private String estado;
+
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "cidade")
     private String cidade;
+
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "tipo")
     private String tipo;
+
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "descricao")
     private String descricao;
+
+    @NotNull(message = "Last Name cannot be empty")
+    @Column(name = "data_nasc")
     private String data_nasc;
+
+    // @OneToOne(mappedBy = "animal_id")
+    // private Adoptions adoptions;
+
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String imagem;
