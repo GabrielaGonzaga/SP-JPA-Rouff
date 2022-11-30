@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -39,6 +40,7 @@ public class AnimalsController {
     @RequestParam("nome") String nome,
     @RequestParam("data_nasc") String data_nasc,
     @RequestParam("raca") String raca,
+    @RequestParam("partner_id") Long partner_id,
     @RequestParam("estado") String estado,
     @RequestParam("cidade") String cidade,
     @RequestParam("sexo") String sexo,
@@ -46,6 +48,7 @@ public class AnimalsController {
     @RequestParam("tipo") String tipo
   ) {
     animalService.Save(
+      partner_id,
       file,
       raca,
       data_nasc,
@@ -65,12 +68,10 @@ public class AnimalsController {
     return "redirect:/admin/animals";
   }
 
-  @GetMapping("/findAnimal/{id}")
-  public String findAnimal(@PathVariable("id") Long id, Model model) {
-    Animal fanimals = animalService.animalfindById(id);
-    model.addAttribute("fanimals", fanimals);
-
-    return "redirect:/admin/animals";
+  @GetMapping("/findAnimal")
+  @ResponseBody
+  public Animal findAnimal(Long id ) {
+    return animalService.animalfindById(id);
   }
 
   @PostMapping("/updateAnimal")

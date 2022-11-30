@@ -11,7 +11,7 @@
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
   <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/animals.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/newAnimal.css}"/>
   <script th:src="@{/js/state.js}" type="text/javascript"></script>
   <title>Novo Animal</title>
 </head>
@@ -88,60 +88,7 @@
   </nav>
 
   <section class="home">
-    <form class="form" action="newAnimal" method="post" enctype="multipart/form-data">
-      <input type="text" name="nome" id="nome" placeholder="Nome" />
-      <hr />
-      <input type="text" name="raca" id="raca" placeholder="Raca" />
-      <hr />
-      <input type="date" name="data_nasc" id="data_nasc" placeholder="Data de nascimento" />
-      <hr />
-      <input type="text" name="descricao" id="descricao" placeholder="Descrição" />
-      <hr />
-      <select name="tipo" id="tipo">
-        <option value="gato">Gato</option>
-        <option value="cachorro">Cachorro</option>
-      </select>
-      <hr />
-      <select id="estado" name="estado" onchange="buscaCidades(this.value)">
-        <option value="">Selecione o Estado</option>
-        <option value="AC">Acre</option>
-        <option value="AL">Alagoas</option>
-        <option value="AP">Amapá</option>
-        <option value="AM">Amazonas</option>
-        <option value="BA">Bahia</option>
-        <option value="CE">Ceará</option>
-        <option value="DF">Distrito Federal</option>
-        <option value="ES">Espírito Santo</option>
-        <option value="GO">Goiás</option>
-        <option value="MA">Maranhão</option>
-        <option value="MT">Mato Grosso</option>
-        <option value="MS">Mato Grosso do Sul</option>
-        <option value="MG">Minas Gerais</option>
-        <option value="PA">Pará</option>
-        <option value="PB">Paraíba</option>
-        <option value="PR">Paraná</option>
-        <option value="PE">Pernambuco</option>
-        <option value="PI">Piauí</option>
-        <option value="RJ">Rio de Janeiro</option>
-        <option value="RN">Rio Grande do Norte</option>
-        <option value="RS">Rio Grande do Sul</option>
-        <option value="RO">Rondônia</option>
-        <option value="RR">Roraima</option>
-        <option value="SC">Santa Catarina</option>
-        <option value="SP">São Paulo</option>
-        <option value="SE">Sergipe</option>
-        <option value="TO">Tocantins</option>
-        <option value="EX">Estrangeiro</option>
-      </select>
-      <br />
-      <select id="cidade" name="cidade">
-      </select>
-      <input type="text" name="sexo" id="sexo" placeholder="Sexo" />
-      <hr />
-      <input type="file" name="file" id="file" placeholder="Imagem" />
-      <hr />
-      <button type="submit" value="ResponseTest">Cadastre-se</button>
-    </form>
+  
   </section>
 </body>
 

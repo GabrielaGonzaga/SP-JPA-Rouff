@@ -6,128 +6,159 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "animal")
 public class Animal {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "nome")
-    private String nome;
+  @OneToOne(cascade = CascadeType.ALL, optional = false)
+  @JoinColumn(name = "partner_id")
+  private User user;
 
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "raca")
-    private String raca;
+  @NotNull(message = "Port cannot be empty")
+  @Column(name = "porte")
+  private String porte;
 
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "sexo")
-    private String sexo;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "nome")
+  private String nome;
 
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "estado")
-    private String estado;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "raca")
+  private String raca;
 
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "cidade")
-    private String cidade;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "sexo")
+  private String sexo;
 
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "tipo")
-    private String tipo;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "estado")
+  private String estado;
 
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "descricao")
-    private String descricao;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "cidade")
+  private String cidade;
 
-    @NotNull(message = "Last Name cannot be empty")
-    @Column(name = "data_nasc")
-    private String data_nasc;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "tipo")
+  private String tipo;
 
-    @OneToOne(mappedBy = "animal")
-    private Adoption adoptions;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "descricao")
+  private String descricao;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-    private String imagem;
+  @NotNull(message = "Last Name cannot be empty")
+  @Column(name = "data_nasc")
+  private String data_nasc;
 
-    public Long getId() {
-        return this.id;
-    }
+  @OneToOne(mappedBy = "animal")
+  private Adoption adoptions;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  @Lob
+  @Column(columnDefinition = "MEDIUMBLOB")
+  private String imagem;
 
-    public String getNome() {
-        return this.nome;
-    }
+  public Long getId() {
+    return this.id;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getRaca() {
-        return this.raca;
-    }
+  public String getNome() {
+    return this.nome;
+  }
 
-    public String getSexo() {
-        return this.sexo;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
+  public String getRaca() {
+    return this.raca;
+  }
 
-    public String getEstado() {
-        return this.estado;
-    }
+  public String getSexo() {
+    return this.sexo;
+  }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+  public void setSexo(String sexo) {
+    this.sexo = sexo;
+  }
 
-    public String getCidade() {
-        return this.cidade;
-    }
+  public String getEstado() {
+    return this.estado;
+  }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+  public void setEstado(String estado) {
+    this.estado = estado;
+  }
 
-    public void setRaca(String raca) {
-        this.raca = raca;
-    }
+  public String getCidade() {
+    return this.cidade;
+  }
 
-    public String getDescricao() {
-        return this.descricao;
-    }
+  public void setCidade(String cidade) {
+    this.cidade = cidade;
+  }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+  public void setRaca(String raca) {
+    this.raca = raca;
+  }
 
-    public String getTipo() {
-        return this.tipo;
-    }
+  public String getDescricao() {
+    return this.descricao;
+  }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
 
-    public String getData_nasc() {
-        return this.data_nasc;
-    }
+  public String getTipo() {
+    return this.tipo;
+  }
 
-    public void setData_nasc(String data_nasc) {
-        this.data_nasc = data_nasc;
-    }
+  public void setTipo(String tipo) {
+    this.tipo = tipo;
+  }
 
-    public String getImagem() {
-        return this.imagem;
-    }
+  public String getData_nasc() {
+    return this.data_nasc;
+  }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
+  public void setData_nasc(String data_nasc) {
+    this.data_nasc = data_nasc;
+  }
 
+  public String getImagem() {
+    return this.imagem;
+  }
+
+  public void setImagem(String imagem) {
+    this.imagem = imagem;
+  }
+
+  public User getUser() {
+    return this.user;
+  }
+
+  public void setUser(User partner) {
+    this.user = partner;
+  }
+
+  public String getPorte() {
+    return this.porte;
+  }
+
+  public void setPorte(String porte) {
+    this.porte = porte;
+  }
+
+  public Adoption getAdoptions() {
+    return this.adoptions;
+  }
+
+  public void setAdoptions(Adoption adoptions) {
+    this.adoptions = adoptions;
+  }
+  
 }

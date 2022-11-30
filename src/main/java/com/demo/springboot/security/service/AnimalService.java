@@ -1,7 +1,9 @@
 package com.demo.springboot.security.service;
 
 import com.demo.springboot.security.model.Animal;
+import com.demo.springboot.security.model.User;
 import com.demo.springboot.security.repository.AnimalRepository;
+import com.demo.springboot.security.repository.UserRepository;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -17,18 +19,21 @@ public class AnimalService {
 
     @Autowired
     private AnimalRepository animalRepo;
+    
+    @Autowired
+    private UserRepository userRepo;
 
     public List<Animal> List() {
         return animalRepo.findAll();
     }
-
     
     public Animal animalfindById(Long id){
         return animalRepo.findById(id).get();
     }
 
     public void Save(
-        MultipartFile file, 
+        Long partner_id, 
+        MultipartFile file,
         String raca, 
         String data_nasc, 
         String nome, 
@@ -49,6 +54,9 @@ public class AnimalService {
             e.printStackTrace();
         }
 
+        User partner = userRepo.findById(partner_id).get();
+
+        obj.setUser(partner);
         obj.setNome(nome);
         obj.setRaca(raca);
         obj.setEstado(estado);

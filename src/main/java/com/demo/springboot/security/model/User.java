@@ -48,7 +48,6 @@ public class User implements UserDetails  {
     @OneToOne(mappedBy = "user")
     private Adoption adoptions;
 
-
     @NotNull(message = "First Name cannot be empty")
     @Column(name = "first_name")
     private String firstName;

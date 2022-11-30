@@ -33,6 +33,13 @@ public class AdoptionController {
     return "admin/solicitations";
   }
 
+  @GetMapping("/user/mySolicitations")
+  public String mySolicitations(Model model) {
+    List<Adoption> mySolicitations = adoptionService.List();
+    model.addAttribute("mySolicitations", mySolicitations);
+    return "user/mySolicitations";
+  }
+
   @RequestMapping("/user/newSolicitation")
   public String NewSoli(Model model) {
     System.out.println("newSolicitation");
@@ -51,7 +58,7 @@ public class AdoptionController {
         adopter_id,
         partner_id,
         status);
-    return "redirect:home";
+    return "redirect:user/mySolicitations";
   }
 
   @GetMapping("/delSolicitation")
