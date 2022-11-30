@@ -38,6 +38,7 @@ public class AnimalService {
         String data_nasc, 
         String nome, 
         String descricao, 
+        String porte, 
         String sexo, 
         String estado, 
         String cidade, 
@@ -58,6 +59,7 @@ public class AnimalService {
 
         obj.setUser(partner);
         obj.setNome(nome);
+        obj.setPorte(porte);
         obj.setRaca(raca);
         obj.setEstado(estado);
         obj.setCidade(cidade);

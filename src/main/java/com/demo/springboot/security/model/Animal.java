@@ -13,8 +13,7 @@ public class Animal {
   @OneToOne(cascade = CascadeType.ALL, optional = false)
   @JoinColumn(name = "partner_id")
   private User user;
-
-  @NotNull(message = "Port cannot be empty")
+  
   @Column(name = "porte")
   private String porte;
 

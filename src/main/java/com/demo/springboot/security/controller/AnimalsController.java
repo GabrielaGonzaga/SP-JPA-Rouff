@@ -34,6 +34,13 @@ public class AnimalsController {
     return "admin/newAnimal";
   }
 
+  @RequestMapping("/contato")
+  public String Contato(Model model) {
+    System.out.println("contato");
+    model.addAttribute("contato", "Contato");
+    return "contato";
+  }
+
   @PostMapping("/admin/newAnimal")
   public String newAnimal(
     @RequestParam("file") MultipartFile file,
@@ -43,6 +50,7 @@ public class AnimalsController {
     @RequestParam("partner_id") Long partner_id,
     @RequestParam("estado") String estado,
     @RequestParam("cidade") String cidade,
+    @RequestParam("porte") String porte,
     @RequestParam("sexo") String sexo,
     @RequestParam("descricao") String descricao,
     @RequestParam("tipo") String tipo
@@ -57,6 +65,7 @@ public class AnimalsController {
       sexo,
       estado,
       cidade,
+      porte,
       tipo
     );
     return "redirect:/admin/animals";
