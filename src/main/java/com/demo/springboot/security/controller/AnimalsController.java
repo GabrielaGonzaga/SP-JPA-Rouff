@@ -67,7 +67,7 @@ public class AnimalsController {
 
   @GetMapping("/findAnimal/{id}")
   public String findAnimal(@PathVariable("id") Long id, Model model) {
-    Optional<Animal> fanimals = animalService.animalfindById(id);
+    Animal fanimals = animalService.animalfindById(id);
     model.addAttribute("fanimals", fanimals);
 
     return "redirect:/admin/animals";

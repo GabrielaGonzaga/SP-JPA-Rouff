@@ -29,7 +29,7 @@ public class UserDetailServiceImpl implements UserService, UserDetailsService {
 //        user.setRole(Role.USER);
         userRepository.save(user);
     }
-
+    
     @Override
     public List<Object> isUserPresent(User user) {
         boolean userExists = false;
@@ -58,4 +58,6 @@ public class UserDetailServiceImpl implements UserService, UserDetailsService {
                         String.format("USER_NOT_FOUND", email)
                 ));
     }
+
+
 }

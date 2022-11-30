@@ -12,9 +12,4 @@ public class AdminController {
     public String adminHome(){
         return "admin/dashboard";
     }
-
-    // @RequestMapping(value = {"/admin/animals"}, method = RequestMethod.GET)
-    // public String Animals() {
-    //   return "admin/animals";
-    // }
 }

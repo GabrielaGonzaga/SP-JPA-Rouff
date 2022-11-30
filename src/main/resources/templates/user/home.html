@@ -86,6 +86,7 @@
 
   <section class="home">
     <div class="text">Home</div>
+    
     <div class="cards-content">
       <a href="#" class="card" th:each="animal : ${animals}">
         <img class="card-pic" th:src="*{'data:image/jpeg;base64,'+{animal.imagem}}" alt="">

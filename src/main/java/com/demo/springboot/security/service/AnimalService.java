@@ -6,7 +6,6 @@ import com.demo.springboot.security.repository.AnimalRepository;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +23,8 @@ public class AnimalService {
     }
 
     
-    public Optional<Animal> animalfindById(Long id){
-        return animalRepo.findById(id);
+    public Animal animalfindById(Long id){
+        return animalRepo.findById(id).get();
     }
 
     public void Save(
@@ -74,8 +73,4 @@ public class AnimalService {
     	animalRepo.save(obj);    
     }
 
-
-    public Optional<Animal> animalfindById(Long id, Optional<Animal> animal) {
-        return null;
-    }
 }

@@ -103,11 +103,11 @@
         <div style="display: flex; grid-gap: 1rem;">
           <div class="chart-box2"> <canvas class="bar" id="bar" width="4" height="2"></canvas></div>
           <div class="chart-box3">
-            <img
-              src="https://blog.unyleya.edu.br/wp-content/uploads/2017/12/saiba-como-a-educacao-ajuda-voce-a-ser-uma-pessoa-melhor.jpeg"
-              alt="">
+            <img th:src="@{'image/jpeg;base64,'+${#authentication.getPrincipal().getId()} + '.png'}" alt="">
             <p>Olá
-              <span sec:authentication="name"></span>
+              <span th:text="${#authentication.getPrincipal().getFirstName()}"></span>
+              <span th:text="${#authentication.getPrincipal().getLastName()}"></span>
+              
             </p>
           </div>
         </div>

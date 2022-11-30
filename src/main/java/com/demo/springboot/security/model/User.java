@@ -45,6 +45,10 @@ public class User implements UserDetails  {
     )
     private Long id;
 
+    @OneToOne(mappedBy = "user")
+    private Adoption adoptions;
+
+
     @NotNull(message = "First Name cannot be empty")
     @Column(name = "first_name")
     private String firstName;
@@ -58,6 +62,9 @@ public class User implements UserDetails  {
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "CEP")
+    private String CEP;
+
     @NotNull(message = "Password cannot be empty")
     @Length(min = 7, message = "Password should be atleast 7 characters long")
     @Column(name = "password")
@@ -66,6 +73,10 @@ public class User implements UserDetails  {
     @Column(name = "mobile", unique = true)
     @Length(min = 10, message = "Password should be atleast 10 number long")
     private String mobile;
+
+    @Lob
+    @Column(name = "pic", columnDefinition = "MEDIUMBLOB")
+    private String pic;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -83,9 +94,6 @@ public class User implements UserDetails  {
 
     @Column(name = "enabled")
     private Boolean enabled = true;
-
-    // @OneToOne(mappedBy = "user_id")
-    // private Adoptions adoptions;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -133,6 +141,14 @@ public class User implements UserDetails  {
         this.role = role;
     }
 
+    public String getPic() {
+        return this.pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+    
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
@@ -148,4 +164,12 @@ public class User implements UserDetails  {
     public String getLastName() { return lastName; }
 
     public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getCEP() { return CEP; }
+
+    public void setCEP(String CEP) { this.CEP = CEP; }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 }

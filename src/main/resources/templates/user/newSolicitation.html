@@ -11,19 +11,16 @@
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
   <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-  <title>Casdastro</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/animals.css}"/>
+  <script th:src="@{/js/state.js}" type="text/javascript"></script>
+  <title>Novo Animal</title>
 </head>
-<header>
-  <img src="../img/lopaper1.png" alt="">
-  <img src="../img/lopaper2.png" alt="">
-</header>
 
 <body>
   <nav class="sidebar close">
     <header>
       <div class="image-logo">
-        <img src="img/hopaper1.png" alt="" />
+        <img th:src="@{/img/hopaper1.png}" alt="" />
       </div>
 
       <i class="bx bx-chevron-right toggle"></i>
@@ -38,7 +35,7 @@
 
         <ul class="menu-links">
           <li class="nav-link">
-            <a th:href="@{/home}">
+            <a  th:href="@{/admin/dashboard}">
               <i class="bx bx-home-alt icon"></i>
               <span class="text nav-text">Home</span>
             </a>
@@ -46,18 +43,24 @@
 
           <li class="nav-link">
             <a href="#">
-              <iconify-icon class='icon' icon="la:hand-holding-heart" width="26"></iconify-icon>
-              <span class="text nav-text">Minhas Adoções</span>
-            </a>
-          </li>
-          
-          <li class="nav-link">
-            <a href="test">
-              <i class='bx bx-user icon'></i>
-              <span class="text nav-text">Meu perfil</span>
+              <i class="bx bx-bell icon"></i>
+              <span class="text nav-text">Solicitações</span>
             </a>
           </li>
 
+          <li class="nav-link">
+            <a th:href="@{/admin/animals}">
+              <iconify-icon class='icon' icon="ph:paw-print" width="26"></iconify-icon>
+              <span class="text nav-text">Animais</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a >
+              <iconify-icon class='icon' icon="la:hand-holding-heart" width="26"></iconify-icon>
+              <span class="text nav-text">Adoções</span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -85,26 +88,20 @@
   </nav>
 
   <section class="home">
-    <div class="text">Home</div>
-    
-    <div class="cards-content">
-      <a href="#" class="card" th:each="animal : ${animals}">
-        <img class="card-pic" th:src="*{'data:image/jpeg;base64,'+{animal.imagem}}" alt="">
-        <span class="card-title">
-          <p>[[*{animal.nome}]]</p>
-          <i th:if="${animal.sexo eq 'M'}" style="font-size: 30px; color:#8EB1E5" class="material-symbols-rounded"
-            id="icon">male</i>
-          <i th:if="${animal.sexo eq 'F'}" style="font-size: 30px; color:#F672E1" class="material-symbols-rounded"
-            id="icon">female</i>
-          <i th:if="${animal.sexo eq ''}" style="font-size: 24px; color:#71279E" class="material-symbols-rounded"
-            id="icon">question_mark</i>
-        </span>
-        <span class="card-subtitle">
-          <i class="material-symbols-rounded">location_on</i>
-          <p>[[*{animal.cidade}]]<span>-</span>[[*{animal.estado}]]</p>
-        </span>
-      </a>
-    </div>
+    <form class="form" action="newSolicitation" method="post" enctype="multipart/form-data">
+      <input type="text" name="animal_id" id="nome" placeholder="Animal" />
+      <hr />
+      <input type="text" name="partner_id" id="raca" placeholder="Partner" />
+      <hr />
+      <select class="form-control" name="status">
+        <option th:value="1" >true</option>
+        <option th:value="0" >false</option>
+    </select>
+      <hr />
+      <input type="text" name="adopter_id" id="descricao" placeholder="Adopter" />
+      <hr />
+      <button type="submit" value="ResponseTest">Cadastre-se</button>
+    </form>
   </section>
 </body>
 
@@ -136,22 +133,3 @@
     }
   })
 </script>
-
-
-
-<!-- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <link rel="stylesheet" href="css/style.css" th:href="@{css/style.css}">
-  <title>User Dashboard</title>
-</head>
-<body>
-  <h2>Welcome to User Dashboard</h2>
-  <p>Logged as: <span sec:authentication="name"></span></p>
-  <p>Has role: <span sec:authentication="authorities"></span></p>
-  <div>
-    <p><a th:href="@{/}">Home</a></p>
-    <p><a th:href="@{/logout}">Log out</a></p>
-  </div>
-</body>
-</html> -->
