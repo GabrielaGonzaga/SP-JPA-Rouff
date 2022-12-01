@@ -6,55 +6,58 @@ import com.demo.springboot.security.model.User;
 import com.demo.springboot.security.repository.AdoptionRepository;
 import com.demo.springboot.security.repository.UserRepository;
 import java.util.List;
-
-import org.apache.logging.log4j.status.StatusListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdoptionService {
+  @Autowired
+  private AdoptionRepository adoptionRepo;
 
-    @Autowired
-    private AdoptionRepository adoptionRepo;
+  @Autowired
+  private AnimalService animalService;
 
-    @Autowired
-    private AnimalService animalService;
+  @Autowired
+  private UserRepository userRepo;
 
-    @Autowired
-    private UserRepository userRepo;
+  public List<Adoption> List() {
+    return adoptionRepo.findAll();
+  }
 
-    public List<Adoption> List() {
-        return adoptionRepo.findAll();
-    }
+  public void Save(
+    Long animal_id,
+    Long adopter_id,
+    Long partner_id,
+    Boolean status
+  ) {
+    Animal animal = animalService.animalfindById(animal_id);
+    User adopter = userRepo.findById(adopter_id).get();
+    User partner = userRepo.findById(partner_id).get();
 
-    public void Save(
-            Long animal_id,
-            Long adopter_id,
-            Long partner_id,
-            Boolean status) {
+    Adoption obj = new Adoption();
+    obj.setAnimal(animal);
+    obj.setUser(partner);
+    obj.setUsers(adopter);
+    obj.setStatus(status);
 
-        Animal animal = animalService.animalfindById(animal_id);
-        User adopter = userRepo.findById(adopter_id).get();
-        User partner = userRepo.findById(partner_id).get();
+    adoptionRepo.save(obj);
+  }
 
-        Adoption obj = new Adoption();
-        obj.setAnimal(animal);
-        obj.setUser(partner);
-        obj.setUsers(adopter);
-        obj.setStatus(status);
+  public void delete(Long id) {
+    adoptionRepo.deleteById(id);
+  }
 
-        adoptionRepo.save(obj);
-    }
+  public void updateStatus(Long id, Boolean status) {
+    Adoption obj = adoptionRepo.findById(id).get();
+    System.out.print("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + id);
+    System.out.print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + status);
+    System.out.print(
+      "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" + obj.getStatus() + obj.getId()
+    );
+    
 
-    public void delete(Long id) {
-        adoptionRepo.deleteById(id);
-    }
+    obj.setStatus(status);
 
-    public void updateStatus(Long id, Boolean status) {
-        Adoption obj = new Adoption();
-        obj = adoptionRepo.findById(id).get();
-        obj.setStatus(status);
-        System.out.println("AOBAAAAAAAAAAAA:"+ obj.getStatus());
-        adoptionRepo.save(obj);
-    }
+    adoptionRepo.save(obj);
+  }
 }

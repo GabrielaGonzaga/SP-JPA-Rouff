@@ -36,6 +36,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		antMatchers("/").permitAll().
 		antMatchers("/login").permitAll().
 		antMatchers("/register").permitAll().
+		antMatchers("/editUser").permitAll().
 		antMatchers("/admin/**").
       	hasAnyAuthority("ADMIN").
       	antMatchers("/account/**").

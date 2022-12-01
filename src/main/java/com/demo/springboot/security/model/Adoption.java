@@ -29,7 +29,7 @@ public class Adoption {
   @Column(name = "created_at", updatable = false)
   private LocalDateTime createdAt;
 
-  @Column(name = "status", updatable = false)
+  @Column(name = "status", updatable = true)
   private Boolean status;
 
   public Long getId() {

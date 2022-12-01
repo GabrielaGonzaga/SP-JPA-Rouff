@@ -106,15 +106,13 @@
           <p>[[*{soli.animal.nome}]]</p>
           <p>[[*{soli.users.mobile}]]</p>
         </div>
-        <form id="up" action="/setStatus" method="post">
-          <input type="text" name="id" th:value="*{soli.id}">
-          <input type="text" name="status" th:value="0">
-          <button type="submit">send</button>
-          <!-- <span th:value="*{soli.id}" name="id"></span>
-          <select  onchange="up.submit()" name="status" id="">
-              <option th:value="1">Aprovado</option>
-              <option th:value="0">Negado</option>
-          </select> -->
+        <form id="up" th:action="@{setStatus}" method="post">
+          <input style="opacity: 0; width: 0;" type="text" name="id" th:value="${soli.id}">
+          <select  onchange="up.submit()" name="status">
+            <option value="">s</option>
+            <option th:value="1">Aprovado</option>
+            <option th:value="0">Negado</option>
+          </select>
         </form>
       </div>
     </div>

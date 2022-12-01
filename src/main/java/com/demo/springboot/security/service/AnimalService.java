@@ -71,6 +71,47 @@ public class AnimalService {
         animalRepo.save(obj);
     }
 
+    public void update(
+        Long id, 
+        MultipartFile file,
+        String raca, 
+        String data_nasc, 
+        String nome, 
+        String descricao, 
+        String porte, 
+        String sexo, 
+        String estado, 
+        String cidade, 
+        String tipo
+    ) {
+        Animal obj = new Animal();
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if (fileName.contains("..")) {
+            System.out.println("not a a valid file");
+        }
+        try {
+            obj.setImagem(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Animal animal = animalRepo.findById(id).get();
+
+        System.out.println(animal);
+
+        animal.setNome(nome);
+        animal.setPorte(porte);
+        animal.setRaca(raca);
+        animal.setEstado(estado);
+        animal.setCidade(cidade);
+        animal.setSexo(sexo);
+        animal.setTipo(tipo);
+        animal.setData_nasc(data_nasc);
+        animal.setDescricao(descricao);
+
+        animalRepo.save(animal);
+    }
+
     public void delete(Long id){
     	animalRepo.deleteById(id);
     }

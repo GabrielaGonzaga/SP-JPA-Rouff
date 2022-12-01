@@ -10,8 +10,8 @@ public class Animal {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @OneToOne(cascade = CascadeType.ALL, optional = false)
-  @JoinColumn(name = "partner_id")
+  @ManyToOne(cascade = CascadeType.ALL, optional = false)
+  @JoinColumn(name = "partner_id", unique=false)
   private User user;
   
   @Column(name = "porte")

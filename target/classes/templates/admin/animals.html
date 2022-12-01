@@ -111,7 +111,7 @@
             <p>[[*{animal.tipo}]]</p>
             <p>[[*{animal.estado}]]</p>
         </div>
-        <button class="data-edit"><a href="#"><iconify-icon icon="bytesize:edit" style="color: #ededed;" width="30"></iconify-icon></a></button>
+        <button class="data-edit"><a th:href="@{/admin/editAnimal/(id=${animal.id})}"><iconify-icon icon="bytesize:edit" style="color: #ededed;" width="30"></iconify-icon></a></button>
         <button class="data-del"><a th:href="@{/deleteAnimal/{id}(id=${animal.id})}"><iconify-icon icon="tabler:trash-x" style="color: #ededed; font-size: 30px;"></iconify-icon></a></button>
       </div>
     </div>
