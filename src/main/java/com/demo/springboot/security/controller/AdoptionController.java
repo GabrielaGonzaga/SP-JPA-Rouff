@@ -33,9 +33,9 @@ public class AdoptionController {
   }
 
   @GetMapping("/user/mySolicitations")
-  public String mySolicitations(Model model) {
-    List<Adoption> mySolicitations = adoptionService.List();
-    model.addAttribute("mySolicitations", mySolicitations);
+  public String MySolicitations(Model model) {
+    List<Adoption> solicitations = adoptionService.List();
+    model.addAttribute("solicitations", solicitations);
     return "user/mySolicitations";
   }
 

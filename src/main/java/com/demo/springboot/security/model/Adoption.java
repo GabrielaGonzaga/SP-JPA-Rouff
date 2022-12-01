@@ -13,15 +13,15 @@ public class Adoption {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @OneToOne(cascade = CascadeType.ALL, optional = false)
+  @ManyToOne(cascade = CascadeType.ALL, optional = false)
   @JoinColumn(name = "animal_id")
   private Animal animal;
 
-  @OneToOne(cascade = CascadeType.ALL, optional = false)
+  @ManyToOne(cascade = CascadeType.ALL, optional = false)
   @JoinColumn(name = "partner_id")
   private User user;
 
-  @OneToOne(cascade = CascadeType.ALL, optional = false)
+  @ManyToOne(cascade = CascadeType.ALL, optional = false)
   @JoinColumn(name = "adopter_id")
   private User users;
 

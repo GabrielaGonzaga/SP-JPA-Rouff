@@ -16,10 +16,10 @@
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
       crossorigin="anonymous"
     ></script>
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
+    /> -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
@@ -175,7 +175,7 @@
       aria-hidden="true"
     >
       <div class="modal-body">
-        <form action=""  class="maForm">
+        <form action="user/newSolicitation" method="post" class="maForm">
         <div class="idetails-content">
           <div class="close-button">
             <a href="">
@@ -196,32 +196,34 @@
                   location_on
                 </i>
                 <p>
-                  <input disabled id="cidade" name="cidade" type="text" />
+                  <input  id="cidade" name="cidade" type="text" />
                   <span>-</span>
-                  <input disabled id="estado" name="estado" type="text" />
+                  <input  id="estado" name="estado" type="text" />
                 </p>
               </span>
               <div class="iinfo-cards">
                 <div class="icard">
-                  <h2>  <input disabled id="sexo" name="sexo" type="text" /></h2>
+                  <h2>  <input  id="sexo" name="sexo" type="text" /></h2>
                   <p>sexo</p>
                 </div>
                 <div class="icard">
-                  <h2>  <input disabled id="raca" name="raca" type="text" /></h2>
+                  <h2><input  id="raca" name="raca" type="text" /></h2>
                   <p>raça</p>
                 </div>
                 <div class="icard">
                   <h2>Male</h2>
-                  <p>porte</p>
+                  <p><input  id="porte" name="porte" type="text" /></p>
                 </div>
-                <div class="icard">
+                <!-- <div class="icard">
                   <h2>Male</h2>
                   <p>idade</p>
-                </div>
+                </div> -->
               </div>
-              <a href="" class="ibutton">
-                <i class="material-symbols-outlined"><p>Me Adote</p></i>
-              </a>
+              <button type="submit">
+                <a href="" class="ibutton">
+                  <i class="material-symbols-outlined"><p>Me Adote</p></i>
+                </a>
+              </button>
             </div>
           </div>
           <div class="idetails-box2">
@@ -232,7 +234,7 @@
                 </span>
                 <span class="ibox2-text">
                   <p>ONG</p>
-                  <h2>ASPCA</h2>
+                  <h2><input id="pa_name" name="pa_name" type="text" /></h2>
                 </span>
               </div>
               <div class="ibox2-icons">
@@ -255,16 +257,17 @@
                   </span>
                 </div>
                 <div class="iicon-text">
-                  <p>11-977347345</p>
-                  <p>email@gmail.com</p>
+                  <p><input id="pa_tel"  type="text" /></p>
+                  <p><input id="pa_email"  type="text" /></p>
                 </div>
               </div>
             </div>
           </div>
           <div class="idetails-box3">
-            <p>
-              <input disabled id="desc" name="descricao" type="text" />
-            </p>
+              <input  id="partner_id" name="partner_id" type="text" />
+              <input  id="animal_id" name="animal_id" type="text" />
+              <input  id="status" name="status" type="text" value="0" />
+              <input  name="adopter_id" th:value="${#authentication.getPrincipal().getId()}"/>
           </div>
         </form>
     </div>
@@ -305,13 +308,19 @@
       var href = $(this).attr('href')
 
       $.get(href, function (animal, status) {
-        $('.maForm #id').val(animal.id)
+        $('.maForm #animal_id').val(animal.id)
         $('.maForm #nome').val(animal.nome)
         $('.maForm #raca').val(animal.raca)
         $('.maForm #sexo').val(animal.sexo)
         $('.maForm #desc').val(animal.descricao)
         $('.maForm #cidade').val(animal.cidade)
+        $('.maForm #porte').val(animal.porte)
         $('.maForm #estado').val(animal.estado)
+        $('.maForm #estado').val(animal.estado)
+        $('.maForm #pa_name').val(animal.user.firstName)
+        $('.maForm #partner_id').val(animal.user.id)
+        $('.maForm #pa_tel').val(animal.user.mobile)
+        $('.maForm #pa_email').val(animal.user.email)
         $('.maForm #img').src(
           "*{'data:image/jpeg;base64,+${" + animal.imagem + '}}',
         )

@@ -11,7 +11,7 @@
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
   <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/animals.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/solicitations.css}" />
   <title>Casdastro</title>
 </head>
 
@@ -41,7 +41,7 @@
           </li>
 
           <li class="nav-link">
-            <a href="#">
+            <a th:href="@{/admin/solicitations}">
               <i class="bx bx-bell icon"></i>
               <span class="text nav-text">Solicitações</span>
             </a>
@@ -96,6 +96,7 @@
           <p>Data</p>
           <p>Animal</p>
           <p>Contato</p>
+          <p>Status</p>
         </div>
       </div>
       <div class="table-content" th:each="soli : ${solicitations}">
@@ -105,14 +106,14 @@
           <p>[[*{soli.createdAt}]]</p>
           <p>[[*{soli.animal.nome}]]</p>
           <p>[[*{soli.users.mobile}]]</p>
+          <p>[[*{soli.status}]]</p>
         </div>
         <form id="up" th:action="@{setStatus}" method="post">
-          <input style="opacity: 0; width: 0;" type="text" name="id" th:value="${soli.id}">
-          <select  onchange="up.submit()" name="status">
-            <option value="">s</option>
+          <select class="select" onchange="up.submit()" name="status">
             <option th:value="1">Aprovado</option>
             <option th:value="0">Negado</option>
           </select>
+          <input style="opacity: 0; width: 0;" type="text" name="id" th:value="${soli.id}">
         </form>
       </div>
     </div>
@@ -140,7 +141,7 @@
   modeSwitch.addEventListener('click', () => {
     body.classList.toggle('dark')
 
-    if (body.classList.contains('dark')) {
+    if (body.classList.contains('dark')) {  
       modeText.innerText = 'Modo claro'
     } else {
       modeText.innerText = 'Modo escuroㅤ'

@@ -11,28 +11,15 @@
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
   <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
-  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/mySolicitations.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/mySolicitations.css}" />
   <title>Casdastro</title>
 </head>
-
-<script>
-    function showBack(){
-        var element = document.getElementById("back");
-        element.classList.add("show-back");
-    }
-
-    function hideBack(){
-        var element = document.getElementById("back");
-        element.classList.remove("show-back");
-    }
-</script>
 
 <body>
   <nav class="sidebar close">
     <header>
       <div class="image-logo">
-        <img src="img/hopaper1.png" alt="" />
+        <img th:src="@{/img/hopaper1.png}" alt="" />
       </div>
 
       <i class="bx bx-chevron-right toggle"></i>
@@ -47,26 +34,32 @@
 
         <ul class="menu-links">
           <li class="nav-link">
-            <a th:href="@{/home}">
+            <a th:href="@{/admin/dashboard}">
               <i class="bx bx-home-alt icon"></i>
               <span class="text nav-text">Home</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="#">
-              <iconify-icon class='icon' icon="la:hand-holding-heart" width="26"></iconify-icon>
-              <span class="text nav-text">Minhas Adoções</span>
-            </a>
-          </li>
-          
-          <li class="nav-link">
-            <a href="test">
-              <i class='bx bx-user icon'></i>
-              <span class="text nav-text">Meu perfil</span>
+            <a th:href="@{/admin/solicitations}">
+              <i class="bx bx-bell icon"></i>
+              <span class="text nav-text">Solicitações</span>
             </a>
           </li>
 
+          <li class="nav-link">
+            <a th:href="@{/admin/animals}">
+              <iconify-icon class='icon' icon="ph:paw-print" width="26"></iconify-icon>
+              <span class="text nav-text">Animais</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a>
+              <iconify-icon class='icon' icon="la:hand-holding-heart" width="26"></iconify-icon>
+              <span class="text nav-text">Adoções</span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -93,71 +86,26 @@
     </div>
   </nav>
 
-      <section class="home">
-    <div class="quadro">
-    <h1>Minhas Adoções</h1>
-    <div class="bloco">
-    <div id="icon"> </div>
-    <p id="name">Tina</p>
-    <img id="genero" src="../img/venus.png" alt="">
-
-    <a onclick="showBack()" id="infobtn">
-        <img id="info" src="../img/info.png" alt="">
-      </a>
-    <button id="cancel">Cancelar Solicitação</button>
-    </div>
-    </div>
-
-    <div class="back" id="back">
-        <div class="mais">
+  <section class="home">
+    <div class="container" th:each="soli : ${solicitations}">
+      <div class="imgInfs">
+        <img
+          class="card-pic"
+          th:src="*{'data:image/jpeg;base64,'+{soli.animal.imagem}}"
+          alt=""
+        />
+      </div>
+        <div class="lista">
+          <h3>[[*{soli.animal.name}]]</h3>
+          <p>[[*{soli.animal.raca}]]</p>
+          <p>[[*{soli.users.firstName}]]</p>
         </div>
-
-    <span id="x" onclick="hideBack()">&times;</span>
-        </div>
-    </div>
-      </section>
-
-  <!-- Button trigger modal --> <br>
-  <button type="button" class="btn btn-success btn-sm mt-2"
-  data-toggle="modal"
-  th:attr="data-target='#exampleModalCenter'+*{product.id}">change
-  name</button> <!-- Modal -->
-
-<div class="modal fade"
-  th:id="*{'exampleModalCenter'+{product.id}}" tabindex="-1"
-  role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">change
-          product name</h5>
-        <button type="button" class="close" data-dismiss="modal"
-          aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-      <div class="modal-body">
-        <form action="/changeName" method="post">
-          <div class="form-group">
-            <label>product id</label> <input type="hidden"
-              th:value="*{product.id}" class="form-control" name="id">
-            <label>new Product name</label> <input type="text"
-              name="newPname" class="form-control"> <br>
-            <button type="submit" class="btn btn-primary">submit</button>
-          </div>
-        </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-          data-dismiss="modal">Close</button>
-
+      <div class="btnCtn">
+        <button>Cancelar</button>
       </div>
     </div>
-  </div>
-</div>
-
+  </section>
 </body>
 
 </html>
@@ -181,55 +129,10 @@
   modeSwitch.addEventListener('click', () => {
     body.classList.toggle('dark')
 
-    if (body.classList.contains('dark')) {
+    if (body.classList.contains('dark')) {  
       modeText.innerText = 'Modo claro'
     } else {
       modeText.innerText = 'Modo escuroㅤ'
     }
   })
 </script>
-
-
-
-<!-- <div class="prim">
-
-    <div id="foto"></div>
-
-    <div class="elipseong"></div>
-    <div class="txtong">
-    <p id="ong">ONG</p>
-    <p id="aspca">ASPCA</p>
-    </div>
-
-    <div class="icones">
-       <a href=""> <img id="tel" src="../img/tel.png" alt=""> </a>
-    <a href="" ><img id="message" src="../img/message.png" alt=""></a>
-    </div>
-</div>
-
-<div class="seg">
-    <div class="basico">
-<p id="nome">Tina</p>
-<p id="loc">Salvador, BA</p>
-
-<div class="blocos" >
-<div id="bloco1">
-    <p id="dado">F</p>
-    <p id="atributo">Sexo</p>
-</div>
-<div id="bloco2">
-    <p id="dado">Branco</p>
-    <p id="atributo">Cor</p>
-</div>
-<div id="bloco3">
-    <p id="dado">Persa</p>
-    <p id="atributo">Raça</p>
-</div>
-<div id="bloco4">
-    <p id="dado">2</p>
-    <p id="atributo">Idade</p>
-</div>
-</div>
-
-</div> -->
-</div>
